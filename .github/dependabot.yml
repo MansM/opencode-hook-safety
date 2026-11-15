@@ -1,0 +1,34 @@
+# Dependabot version updates. Free on public repos; the jobs run on GitHub-hosted
+# runners and do not count against Actions minutes.
+#
+# Dependabot edits the package.json range and package-lock.json in the same PR, so the
+# lockfile stays committed and CI (`npm ci`) tests exactly what a consumer installs.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # Default is 5 open version-update PRs; past that Dependabot stops and reports an
+    # error on the Dependabot page, so raise this rather than wondering why updates stopped.
+    open-pull-requests-limit: 5
+    # One PR for routine bumps, separate PRs for majors: majors (typescript 5 -> 7) get
+    # their own CI verdict instead of being buried in a group.
+    groups:
+      patch-and-minor:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+          - "minor"
+
+  # Keeps actions/checkout and actions/setup-node current in .github/workflows.
+  # `directory: "/"` is enough: workflow files are the default location.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+# Security alerts and security-update PRs are repository settings, not keys here:
+# Settings -> Code security and analysis (Dependency graph, Dependabot alerts,
+# Dependabot security updates).
