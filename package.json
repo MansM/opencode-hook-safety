@@ -1,0 +1,52 @@
+{
+  "name": "opencode-hook-safety",
+  "version": "0.1.0",
+  "description": "OpenCode V2 plugin that reviews agent tool calls before they run: secret paths, destructive shell commands, optional model classifier.",
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "permissions",
+    "security",
+    "guardrails",
+    "ai-agents"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MansM/hooksafetycheck.git"
+  },
+  "homepage": "https://github.com/MansM/hooksafetycheck#readme",
+  "bugs": {
+    "url": "https://github.com/MansM/hooksafetycheck/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./.opencode/plugins/hook-safety.ts"
+  },
+  "files": [
+    ".opencode/plugins",
+    "test",
+    "LICENSE",
+    "README.md",
+    "tsconfig.json"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --test test/",
+    "check": "npm run typecheck && npm test",
+    "prepublishOnly": "npm run check"
+  },
+  "dependencies": {
+    "@opencode/plugin": "^2.2.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^5.9.0"
+  }
+}
